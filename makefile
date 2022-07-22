@@ -30,3 +30,6 @@ gcp-shutdown:
 
 kube-apply:
 	cat zarf/k8s/ardan-service.yaml | kubectl apply -f -
+
+kube-logs:
+	kubectl logs -l app=ardan-service -n ardan-service --all-containers=true -f --tail=100
