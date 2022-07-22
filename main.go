@@ -11,7 +11,7 @@ import (
 var build string = "develop"
 
 func main() {
-	fmt.Println("Hello ardanlabs serivice", build)
+	fmt.Println("Hello ardanlabs dkravets service", build)
 	log.Println("starting ardan-service", "version", build)
 	defer log.Println("shutdown complete")
 

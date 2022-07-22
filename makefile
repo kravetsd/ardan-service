@@ -33,3 +33,14 @@ kube-apply:
 
 kube-logs:
 	kubectl logs -l app=ardan-service -n ardan-service --all-containers=true -f --tail=100
+
+kube-restart:
+	kubectl rollout restart deployment ardan-service-pod -n ardan-service
+
+kube-status:
+	kubectl get pods -n ardan-service --watch
+
+kube-load:
+	docker push kdykrg/ardan-service:1.0
+
+kube-update: all kube-load kube-restart
