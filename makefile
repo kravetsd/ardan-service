@@ -27,3 +27,6 @@ gcp-up:
 
 gcp-shutdown:
 	gcloud compute instances stop worker-0 worker-1 worker-2 controller-0 controller-1 controller-2
+
+kube-apply:
+	cat zarf/k8s/ardan-service.yaml | kubectl apply -f -
