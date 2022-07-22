@@ -1,0 +1,23 @@
+# Build the Go Binary.
+FROM golang:1.18 as build_sales-api
+ENV CGO_ENABLED 0
+ARG BUILD_REF
+
+# Copy the source code into the container.
+RUN mkdir /ardan-service
+COPY main.go go.mod /ardan-service/
+
+# Build the admin binary.
+
+WORKDIR /ardan-service
+RUN go build -ldflags "-X main.build=${BUILD_REF}"
+
+
+
+# Run the Go Binary in Alpine.
+FROM alpine:3.14
+
+COPY --from=build_sales-api /ardan-service /ardan-service/
+WORKDIR /ardan-service
+CMD ["./ardan-service"]
+
