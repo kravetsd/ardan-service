@@ -11,7 +11,7 @@ build:
 # ==============================================================================
 # Building containers
 
-VERSION := 1.01
+VERSION := 1.0
 
 all: ardan-service
 
