@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"os/signal"
+	"runtime"
 	"syscall"
 )
 
@@ -12,7 +13,8 @@ var build string = "develop"
 
 func main() {
 	fmt.Println("Hello ardanlabs dkravets service", build)
-	log.Println("starting ardan-service", "version", build)
+	g := runtime.GOMAXPROCS(0)
+	log.Printf("Starting ardan-service[%s] CPU[%d]", build, g)
 	defer log.Println("shutdown complete")
 
 	// Make a channel to listen for an interrupt or terminate signal from the OS.

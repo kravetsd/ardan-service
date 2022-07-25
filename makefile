@@ -11,7 +11,7 @@ build:
 # ==============================================================================
 # Building containers
 
-VERSION := 1.0
+VERSION := 1.01
 
 all: ardan-service
 
@@ -41,6 +41,6 @@ kube-status:
 	kubectl get pods -n ardan-service --watch
 
 kube-load:
-	docker push kdykrg/ardan-service:1.0
+	docker push kdykrg/ardan-service:$(VERSION)
 
-kube-update: all kube-load kube-restart
+kube-update: all kube-load kube-apply kube-restart
