@@ -14,7 +14,7 @@ import (
 var build string = "develop"
 
 func main() {
-	fmt.Println("Hello ardanlabs dkravets service", build)
+	fmt.Println("Hello updated sales-api ", build)
 
 	// =========================================================================
 	// GOMAXPROCS

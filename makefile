@@ -41,6 +41,7 @@ kube-status:
 	kubectl get pods -n sales-api --watch
 
 kube-load:
+	cd zarf/k8s/gcp/sales-api; kustomize edit set image sales-api-image=kdykrg/sales-api:$(VERSION)
 	docker push kdykrg/sales-api:$(VERSION)
 
 kube-update: all kube-load kube-apply kube-restart
