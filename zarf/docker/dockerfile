@@ -4,12 +4,12 @@ ENV CGO_ENABLED 0
 ARG BUILD_REF
 
 # Copy the source code into the container.
-RUN mkdir /ardan-service
-COPY main.go go.mod vendor go.sum /ardan-service/
+RUN mkdir /service
+COPY . /service/
 
 # Build the admin binary.
 
-WORKDIR /ardan-service
+WORKDIR /service/app/services/sales-api
 RUN go build -ldflags "-X main.build=${BUILD_REF}"
 
 
@@ -17,7 +17,7 @@ RUN go build -ldflags "-X main.build=${BUILD_REF}"
 # Run the Go Binary in Alpine.
 FROM alpine:3.14
 
-COPY --from=build_sales-api /ardan-service /ardan-service/
-WORKDIR /ardan-service
-CMD ["./ardan-service"]
+COPY --from=build_sales-api /service/app/services/sales-api/sales-api /service/sales-api
+WORKDIR /service
+CMD ["./service"]
 
