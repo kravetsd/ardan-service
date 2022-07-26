@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 run:
-	go run main.go
+	go run app/services/sales-api/main.go
 
 build: 
 	go build -ldflags "-X main.build=local"
@@ -21,6 +21,9 @@ sales-api:
 		-t kdykrg/sales-api:$(VERSION) \
 		--build-arg BUILD_REF=$(VERSION) \
 		.
+
+docker-run:
+	docker run kdykrg/sales-api:$(VERSION)
 
 gcp-up:
 	gcloud compute instances start worker-0 worker-1 worker-2 controller-0 controller-1 controller-2
