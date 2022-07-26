@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ardan-service-pod # Base POD name
-  namespace: ardan-service
+  name: sales-api-pod # Base POD name
+  namespace: sales-api
 spec:
   replicas: 1
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      app: ardan-service # Selector for POD name search.
+      app: sales-api # Selector for POD name search.
   template:
     metadata:
       labels:
-        app: ardan-service
+        app: sales-api
     spec:
       containers:
-      - name: ardan-service
+      - name: sales-api
         resources:
           limits:
             cpu: "500m"

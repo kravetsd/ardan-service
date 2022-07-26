@@ -13,12 +13,12 @@ build:
 
 VERSION := 1.0
 
-all: ardan-service
+all: sales-api
 
-ardan-service:
+sales-api:
 	docker build \
-		-f zarf/docker/dockerfile\
-		-t kdykrg/ardan-service:$(VERSION) \
+		-f zarf/docker/dockerfile.sales-api\
+		-t kdykrg/sales-api:$(VERSION) \
 		--build-arg BUILD_REF=$(VERSION) \
 		.
 
@@ -29,19 +29,19 @@ gcp-shutdown:
 	gcloud compute instances stop worker-0 worker-1 worker-2 controller-0 controller-1 controller-2
 
 kube-apply:
-	kustomize build zarf/k8s/gcp/ardan-service | kubectl apply -f -
+	kustomize build zarf/k8s/gcp/sales-api | kubectl apply -f -
 
 kube-logs:
-	kubectl logs -l app=ardan-service -n ardan-service --all-containers=true -f --tail=100
+	kubectl logs -l app=sales-api -n sales-api --all-containers=true -f --tail=100
 
 kube-restart:
-	kubectl rollout restart deployment ardan-service-pod -n ardan-service
+	kubectl rollout restart deployment sales-api-pod -n sales-api
 
 kube-status:
-	kubectl get pods -n ardan-service --watch
+	kubectl get pods -n sales-api --watch
 
 kube-load:
-	docker push kdykrg/ardan-service:$(VERSION)
+	docker push kdykrg/sales-api:$(VERSION)
 
 kube-update: all kube-load kube-apply kube-restart
 

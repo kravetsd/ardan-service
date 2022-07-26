@@ -19,5 +19,5 @@ FROM alpine:3.14
 
 COPY --from=build_sales-api /service/app/services/sales-api/sales-api /service/sales-api
 WORKDIR /service
-CMD ["./service"]
+CMD ["./sales-api"]
 
