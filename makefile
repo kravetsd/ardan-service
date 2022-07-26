@@ -29,7 +29,7 @@ gcp-shutdown:
 	gcloud compute instances stop worker-0 worker-1 worker-2 controller-0 controller-1 controller-2
 
 kube-apply:
-	cat zarf/k8s/ardan-service.yaml | kubectl apply -f -
+	kustomize build zarf/k8s/gcp/ardan-service | kubectl apply -f -
 
 kube-logs:
 	kubectl logs -l app=ardan-service -n ardan-service --all-containers=true -f --tail=100
@@ -44,3 +44,7 @@ kube-load:
 	docker push kdykrg/ardan-service:$(VERSION)
 
 kube-update: all kube-load kube-apply kube-restart
+
+tidy:
+	go mod tidy
+	go mod vendor

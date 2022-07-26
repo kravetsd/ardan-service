@@ -5,7 +5,7 @@ ARG BUILD_REF
 
 # Copy the source code into the container.
 RUN mkdir /ardan-service
-COPY main.go go.mod /ardan-service/
+COPY main.go go.mod vendor go.sum /ardan-service/
 
 # Build the admin binary.
 
