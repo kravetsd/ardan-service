@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - ../../base
 patchesStrategicMerge:
-  - ./ardan-service-patch.yaml
+  - ./sales-api-patch.yaml
