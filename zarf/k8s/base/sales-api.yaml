@@ -37,12 +37,13 @@ metadata:
   name: sales-api-pod
   namespace: sales-api
 spec:
+  type: NodePort
   selector:
     app: sales-api
   ports:
   - name: sales-api
     port: 3000
-    targetPort: sales-api
+    nodePort: 30000
   - name: sales-api-debug
     port: 4000
-    targetPort: sales-api-debug
+    nodePort: 30001
